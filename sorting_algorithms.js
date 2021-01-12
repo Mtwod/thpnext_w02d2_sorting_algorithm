@@ -1,5 +1,4 @@
 const fs = require('fs');
-const { METHODS } = require('http');
 
 const fileName = process.argv[2];
 
@@ -81,7 +80,7 @@ try {
   const data = fs.readFileSync(fileName, 'utf8');
   const numbers = data.split(' ').map((number) => Number.parseInt(number));
   console.log(numbers);
-  if (!hasOnlyNumbers(numbers)) return console.log("There is an element that is not a number!");
+  if (!hasOnlyNumbers(numbers)) return console.error("The data is not valid!");
   bubbleSort(numbers);
   insertionSort(numbers);
   selectionSort(numbers);
