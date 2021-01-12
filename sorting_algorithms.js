@@ -8,14 +8,8 @@ const hasOnlyNumbers = (array) => {
   return true; 
 };
 
-const swapValues = (x, y) => {
-  const tempValue = y;
-  y = x;
-  x = tempValue;
-}
-
-const bubble_sort = (numbers) => {
-  sortedNumbers = [...numbers];
+const bubbleSort = (numbers) => {
+  let sortedNumbers = [...numbers];
   let comparisonCount = 0;
   let swapped = false;
   for (let i = sortedNumbers.length - 1; i >= 0; i--) {
@@ -35,6 +29,23 @@ const bubble_sort = (numbers) => {
   return sortedNumbers;
 }
 
+const insertionSort = (numbers) => {
+  let sortedNumbers = [...numbers];
+  let comparisonCount = 0;
+  for (let i = 1; i < sortedNumbers.length; i++) {
+    const valueToCompare = sortedNumbers[i];
+    j = i;
+    while (j > 0 && sortedNumbers[j - 1] > valueToCompare) {
+      comparisonCount++;
+      sortedNumbers[j] = sortedNumbers[j - 1];
+      j--;
+    }
+    sortedNumbers[j] = valueToCompare;
+  }
+  console.log(`Tri par insertion: ${comparisonCount} comparaisons - [${sortedNumbers}]`);
+  return sortedNumbers;
+};
+
 // Méthode asynchrone
 // fs.readFile(fileName, 'utf8', (error, data) => {
 //   if (error) {
@@ -50,7 +61,8 @@ try {
   const numbers = data.split(' ').map((number) => Number.parseInt(number));
   console.log(numbers);
   if (!hasOnlyNumbers(numbers)) return console.log("There is an element that is not a number!");
-  bubble_sort(numbers);
+  bubbleSort(numbers);
+  insertionSort(numbers);
   console.log(numbers);
   
 } catch (error) {
