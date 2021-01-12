@@ -79,12 +79,19 @@ const selectionSort = (numbers) => {
 try {
   const data = fs.readFileSync(fileName, 'utf8');
   const numbers = data.split(' ').map((number) => Number.parseInt(number));
-  console.log(numbers);
   if (!hasOnlyNumbers(numbers)) return console.error("The data is not valid!");
+  
+  console.log('====================================');
+  console.log(numbers);
+  console.log('====================================\n');
+
   bubbleSort(numbers);
   insertionSort(numbers);
   selectionSort(numbers);
+
+  console.log('\n====================================');
   console.log(numbers);
+  console.log('====================================');
   
 } catch (error) {
   console.error(error.message);
