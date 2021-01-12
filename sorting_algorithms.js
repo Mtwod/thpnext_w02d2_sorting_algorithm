@@ -1,4 +1,5 @@
 const fs = require('fs');
+const { METHODS } = require('http');
 
 const fileName = process.argv[2];
 
@@ -46,6 +47,26 @@ const insertionSort = (numbers) => {
   return sortedNumbers;
 };
 
+const selectionSort = (numbers) => {
+  let sortedNumbers = [...numbers];
+  let comparisonCount = 0;
+  for (let i = 0; i < sortedNumbers.length - 1; i++) {
+    minIndex = i;
+    for (let j = i + 1; j < sortedNumbers.length; j++) {
+      comparisonCount++;
+      if (sortedNumbers[j] < sortedNumbers[minIndex]) minIndex = j;
+    }
+    if (minIndex != i) {
+      minValue = sortedNumbers[minIndex];
+      sortedNumbers[minIndex] = sortedNumbers[i];
+      sortedNumbers[i] = minValue;
+    }
+  }
+  console.log(`Tri par sélection: ${comparisonCount} comparaisons - [${sortedNumbers}]`);
+  return sortedNumbers;
+};
+
+
 // Méthode asynchrone
 // fs.readFile(fileName, 'utf8', (error, data) => {
 //   if (error) {
@@ -63,6 +84,7 @@ try {
   if (!hasOnlyNumbers(numbers)) return console.log("There is an element that is not a number!");
   bubbleSort(numbers);
   insertionSort(numbers);
+  selectionSort(numbers);
   console.log(numbers);
   
 } catch (error) {
